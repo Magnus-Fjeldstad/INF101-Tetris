@@ -22,9 +22,6 @@ public class TetrisMain {
 
     TetrisModel model = new TetrisModel(board);
     TetrisView window= new TetrisView(model);
-    
-  
-    
 
     // The JFrame is the "root" application window.
     // We here set som properties of the main window, 

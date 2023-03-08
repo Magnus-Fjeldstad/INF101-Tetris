@@ -13,7 +13,7 @@ public class TestTetromino {
     Tetromino t3 = Tetromino.newTetromino('T').shiftedBy(1, 0);
     Tetromino s1 = Tetromino.newTetromino('S');
     Tetromino s2 = Tetromino.newTetromino('S').shiftedBy(0, 0);
-
+    
     assertEquals(t1, t2);
     assertEquals(s1, s2);
     assertEquals(t1.hashCode(), t2.hashCode());

@@ -28,6 +28,7 @@ public class Tetromino {
                     { false,  true, false }
                 }
                 , leftPos);
+
             case 'S':
                 return new Tetromino(family, new boolean[][] {
                     { false, false, false },
@@ -80,12 +81,14 @@ public class Tetromino {
         }
     }
 
-
     public Tetromino shiftedBy(int deltaRow, int deltaCol){
         return new Tetromino(family, piece, new CellPosition(this.leftUpperPos.row() + deltaRow, this.leftUpperPos.col() + deltaCol));
+        
     }
 
     public Tetromino shiftedToTopCenterOf(GridDimension grid){
         return new Tetromino(family, piece, new CellPosition(0, this.leftUpperPos.col() + 4));     
     }
+    
+    
 }
