@@ -3,10 +3,8 @@ package no.uib.inf101.tetris;
 import javax.swing.JFrame;
 
 import no.uib.inf101.grid.CellPosition;
-import no.uib.inf101.tetris.midi.TetrisSong;
 import no.uib.inf101.tetris.model.TetrisBoard;
 import no.uib.inf101.tetris.model.TetrisModel;
-import no.uib.inf101.tetris.view.SampleView;
 import no.uib.inf101.tetris.view.TetrisView;
 
 
@@ -18,9 +16,9 @@ public class TetrisMain {
     TetrisBoard board = new TetrisBoard(15, 10);
 
     board.set(new CellPosition(0, 0), 'g');
-    board.set(new CellPosition(0, 3), 'y');
-    board.set(new CellPosition(2, 0), 'r');
-    board.set(new CellPosition(2, 3), 'b');
+    board.set(new CellPosition(0, 9), 'y');
+    board.set(new CellPosition(14, 0), 'r');
+    board.set(new CellPosition(14, 9), 'b');
 
     TetrisModel model = new TetrisModel(board);
     TetrisView window= new TetrisView(model);

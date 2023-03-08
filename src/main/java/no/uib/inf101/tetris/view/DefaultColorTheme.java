@@ -10,8 +10,9 @@ public class DefaultColorTheme implements ColorTheme {
         Color color = switch (c){
             case 'r' -> Color.RED;
             case 'g' -> Color.GREEN;
-            case 'b' -> Color.BLACK;
+            case 'b' -> Color.BLUE;
             case 'y' -> Color.YELLOW;
+            case '-' -> Color.BLACK;
 
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
@@ -20,7 +21,7 @@ public class DefaultColorTheme implements ColorTheme {
 
     @Override
     public Color getFrameColor() {
-        return Color.PINK;
+        return Color.WHITE;
     }
 
     @Override
