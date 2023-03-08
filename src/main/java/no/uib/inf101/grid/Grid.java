@@ -6,9 +6,9 @@ import java.util.Iterator;
 
 public class Grid<E> implements IGrid<E> {
     //fieldVariables
-    private  int rows;
-    private  int cols;
-    private  ArrayList<ArrayList<E>> grid;
+    private final int rows;
+    private final int cols;
+    private final ArrayList<ArrayList<E>> grid;
 
 
     // Contructor
@@ -90,5 +90,5 @@ public class Grid<E> implements IGrid<E> {
         return pos.row() >= 0 && pos.row() < this.rows() && pos.col() >= 0 && pos.col() < this.cols();
     }
 
-    
+   
 }

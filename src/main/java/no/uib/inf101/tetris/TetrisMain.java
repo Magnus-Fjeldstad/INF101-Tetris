@@ -2,14 +2,31 @@ package no.uib.inf101.tetris;
 
 import javax.swing.JFrame;
 
+import no.uib.inf101.grid.CellPosition;
+import no.uib.inf101.tetris.midi.TetrisSong;
+import no.uib.inf101.tetris.model.TetrisBoard;
+import no.uib.inf101.tetris.model.TetrisModel;
 import no.uib.inf101.tetris.view.SampleView;
+import no.uib.inf101.tetris.view.TetrisView;
 
 
 public class TetrisMain {
   public static final String WINDOW_TITLE = "INF101 Tetris";
   
   public static void main(String[] args) {
-    SampleView view = new SampleView();
+
+    TetrisBoard board = new TetrisBoard(15, 10);
+
+    board.set(new CellPosition(0, 0), 'g');
+    board.set(new CellPosition(0, 3), 'y');
+    board.set(new CellPosition(2, 0), 'r');
+    board.set(new CellPosition(2, 3), 'b');
+
+    TetrisModel model = new TetrisModel(board);
+    TetrisView window= new TetrisView(model);
+    
+  
+    
 
     // The JFrame is the "root" application window.
     // We here set som properties of the main window, 
@@ -18,7 +35,7 @@ public class TetrisMain {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     // Here we set which component to view in our window
-    frame.setContentPane(view);
+    frame.setContentPane(window);
     
     // Call these methods to actually display the window
     frame.pack();
