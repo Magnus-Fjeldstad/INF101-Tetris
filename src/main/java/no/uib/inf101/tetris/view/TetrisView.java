@@ -26,8 +26,9 @@ public class TetrisView extends JPanel {
         this.setPreferredSize(new Dimension(300, 400));
       }
 
+    
 
-      
+    //This is the method that draws the actual board  
       @Override
       public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -35,6 +36,7 @@ public class TetrisView extends JPanel {
         drawGame(g2);
       }
 
+    //Draws the game, background is black and is collected from ColorTheme, and draws the white margin in the board
       public void drawGame(Graphics2D g2){
         Rectangle2D rectangle = new Rectangle2D.Double(0, 0, getWidth() , getHeight());
         g2.setColor(colorTheme.getFrameColor());
@@ -43,6 +45,7 @@ public class TetrisView extends JPanel {
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(getBounds(),window.getDimension(), 2), colorTheme);
       }
 
+    //Draws the grid using iterable
       public static void drawCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
         for (GridCell<Character> gridCell : cell) {     
             Color color = CT.getCellColor(gridCell.value());

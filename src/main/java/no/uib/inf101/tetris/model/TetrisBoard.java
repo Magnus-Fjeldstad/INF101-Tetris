@@ -9,14 +9,13 @@ public class TetrisBoard extends Grid<Character> {
         super(rows, cols, '-');
 
     }  
-
-
+    
+    //Turns cellposistions
     public String prettyString() {
         String stringBoard = "";
-        for (int i = 0; i < this.rows(); ++i) {  // rows er antall rader i brettet
-            for(int j = 0; j < this.cols(); j++){                
-                    stringBoard += this.get( new CellPosition(i,j));
-                                           
+        for (int i = 0; i < this.rows(); ++i) {  // rows er høyden
+            for(int j = 0; j < this.cols(); j++){//cols er bredden                 
+                    stringBoard += this.get( new CellPosition(i,j));                                          
             }
             if (i < this.rows() -1){
                 stringBoard += ("\n");}   

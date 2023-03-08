@@ -28,7 +28,7 @@ public class Grid<E> implements IGrid<E> {
         }
   }
 
-  //Second Constructor, this is the "grid"
+  //Second Constructor
   public Grid(int rows, int cols){
     this(rows, cols, null);
 }

@@ -2,13 +2,28 @@ package no.uib.inf101.tetris.view;
 import java.awt.Color;
 
 public interface ColorTheme {
-    //gets the color of the cell
+
+    /**
+   * Gets the color of the cell.
+   *
+   * @param c Converts the char "c" to a color
+   * @return the color of the cell
+   */
     Color getCellColor(char c);
 
-    //gets the color of the frame
+    /**
+   * Sets the color of the frame of the board.
+   *
+   * @return the color of the frame
+   */
     Color getFrameColor();
 
-    //get the background color
+
+    /**
+   * Sets the color of the frame of the background.
+   *
+   * @return the color of the background
+   */
     Color getBackgroundColor();
 
 }
