@@ -2,8 +2,15 @@ package no.uib.inf101.tetris.model.tetromino;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import no.uib.inf101.grid.CellPosition;
+import no.uib.inf101.grid.GridCell;
 
 public class TestTetromino {
     @Test
@@ -21,5 +28,68 @@ public class TestTetromino {
     assertNotEquals(t1, t3);
     assertNotEquals(t1, s1);
     }
+
+    @Test
+    public void tetrominoIterationOfT() {
+    // Create a standard 'T' tetromino placed at (10, 100) to test
+    Tetromino tetro = Tetromino.newTetromino('T');
+    tetro = tetro.shiftedBy(10, 100);
+
+    // Collect which objects are iterated through
+    List<GridCell<Character>> objs = new ArrayList<>();
+    for (GridCell<Character> gc : tetro) {
+        objs.add(gc);
+    }
+
+    // Check that we got the expected GridCell objects
+    assertEquals(4, objs.size());
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 100), 'T')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 101), 'T')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 102), 'T')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(12, 101), 'T')));
+    }
+
+    @Test
+    public void tetrominoIterationOfS() {
+    // Create a standard 'S' tetromino placed at (10, 100) to test
+    Tetromino tetro = Tetromino.newTetromino('S');
+    tetro = tetro.shiftedBy(10, 100);
+
+    // Collect which objects are iterated through
+    List<GridCell<Character>> objs = new ArrayList<>();
+    for (GridCell<Character> gc : tetro) {
+        objs.add(gc);
+    }
+
+    // Check that we got the expected GridCell objects
+    assertEquals(4, objs.size());
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(12, 100), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(12, 101), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 101), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 102), 'S')));
+    }
+
+    @Test
+    public void movedByToShiftedBy() {
+    // Create a standard 'S' tetromino placed at (20, 200) to test
+    Tetromino tetro = Tetromino.newTetromino('S');
+    //Moved the tetro two times by 20 rows and 200 cols
+    tetro = tetro.shiftedBy(10, 100);
+    tetro = tetro.shiftedBy(10, 100);
+
+    // Collect which objects are iterated through
+    List<GridCell<Character>> objs = new ArrayList<>();
+    for (GridCell<Character> gc : tetro) {
+        objs.add(gc);
+    }
+
+    // Check that we got the expected GridCell objects
+    assertEquals(4, objs.size());
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(22, 200), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(22, 201), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(21, 201), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(21, 202), 'S')));
+    }
+
 
 }
