@@ -12,4 +12,6 @@ public interface ViewableTetrisModel{
 
     Iterable<GridCell<Character>> getTilesOnBoard();
 
+    Iterable<GridCell<Character>> getFallingPiece();
+
 }

@@ -10,7 +10,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import no.uib.inf101.grid.CellPosition;
+import no.uib.inf101.grid.Grid;
 import no.uib.inf101.grid.GridCell;
+import no.uib.inf101.tetris.model.TetrisBoard;
 
 public class TestTetromino {
     @Test
@@ -92,4 +94,30 @@ public class TestTetromino {
     }
 
 
+
+    @Test
+    public void shiftedToTopCenterOfO() {
+    // Create a standard 'S' tetromino placed at (20, 200) to test
+    Tetromino tetro = Tetromino.newTetromino('O');
+    //Moved the tetro two times by 20 rows and 200 cols
+    tetro = tetro.shiftedToTopCenterOf(new TetrisBoard(5, 9));
+
+    // Collect which objects are iterated through
+    List<GridCell<Character>> objs = new ArrayList<>();
+    for (GridCell<Character> gc : tetro) {
+        objs.add(gc);
+    }
+
+    // Check that we got the expected GridCell objects
+    assertEquals(4, objs.size());
+    System.out.println(tetro.leftUpperPos.row());
+    System.out.println(tetro.leftUpperPos.col());
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(0, 3), 'O')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(0,4), 'O')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(1,3), 'O')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(1,4), 'O')));
+    }
+
 }
+
+

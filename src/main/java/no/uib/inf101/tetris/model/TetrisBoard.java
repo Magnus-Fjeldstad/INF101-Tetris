@@ -10,7 +10,7 @@ public class TetrisBoard extends Grid<Character> {
 
     }  
     
-    //Turns cellposistions
+    //Turns cellposistions to string
     public String prettyString() {
         String stringBoard = "";
         for (int i = 0; i < this.rows(); ++i) {  // rows er høyden

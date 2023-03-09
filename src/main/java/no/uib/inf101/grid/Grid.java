@@ -44,14 +44,16 @@ public class Grid<E> implements IGrid<E> {
     }
 
     
-    //TODO Endre på koden
+    /**
+     * @return an iterator over a ArrayList of GridCell<E> 
+     */
     @Override
     public Iterator<GridCell<E>> iterator() {
         ArrayList<GridCell<E>> listElements = new ArrayList<>();
     
-            for (int y = 0; y < rows; y++) {
-                for (int x = 0; x < cols; x++) {
-                    CellPosition pos = new CellPosition(y, x);
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < cols; col++) {
+                    CellPosition pos = new CellPosition(row, col);
                     GridCell<E> gridItem = new GridCell<E>(pos, get(pos));
     
                     listElements.add(gridItem);

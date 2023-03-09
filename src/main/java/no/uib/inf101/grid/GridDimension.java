@@ -2,9 +2,15 @@ package no.uib.inf101.grid;
 
 public interface GridDimension {
 
-  /** Number of rows in the grid */
+  /**
+   * 
+   * @return number of rows in the frid
+   */
   int rows();
 
-  /** Number of columns in the grid */
+  /**
+   * 
+   * @return number of cols in the grid
+   */
   int cols();
 }

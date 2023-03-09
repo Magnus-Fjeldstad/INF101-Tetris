@@ -42,7 +42,9 @@ public class TetrisView extends JPanel {
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(rectangle);
 
+        
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(getBounds(),window.getDimension(), 2), colorTheme);
+        drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(getBounds(),window.getDimension(), 2), colorTheme);
       }
 
     //Draws the grid using iterable

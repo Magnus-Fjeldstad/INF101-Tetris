@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.math.*;
+
 
 import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.GridCell;
@@ -102,7 +102,9 @@ public class Tetromino implements Iterable<GridCell<Character>>{
      */
 
     public Tetromino shiftedBy(int deltaRow, int deltaCol){
-        return new Tetromino(family, piece, new CellPosition(this.leftUpperPos.row() + deltaRow, this.leftUpperPos.col() + deltaCol));
+        int newDeltaRow = this.leftUpperPos.row() + deltaRow;
+        int newDeltaCol = this.leftUpperPos.col() + deltaCol;
+        return new Tetromino(this.family, this.piece, new CellPosition(newDeltaRow, newDeltaCol));
         
     }
 
@@ -111,10 +113,18 @@ public class Tetromino implements Iterable<GridCell<Character>>{
      * @param grid the playing board represented in a grid 
      * @return a new Tetromino object moved to the center and top of the board
      */
-    public Tetromino shiftedToTopCenterOf(GridDimension grid){
-        int halfBoard = Math.round(grid.cols()/2);
 
-        return new Tetromino(family, piece, new CellPosition(0, this.leftUpperPos.col() + halfBoard));     
+     /**
+      * 
+      * @param grid a grid/playing board as a parameter
+      * @return a new Tetromino object moved to the middle of the board
+      */
+    public Tetromino shiftedToTopCenterOf(GridDimension grid){
+        //int halfBoard = grid.cols()/2;
+        int center = (grid.cols()-piece.length)/2;
+        int deltaRow = -1;
+        return new Tetromino(this.family, this.piece, new CellPosition(deltaRow, center));
+          
     }
 
     @Override
@@ -124,13 +134,13 @@ public class Tetromino implements Iterable<GridCell<Character>>{
 
         int numRows = piece.length;
         int numCols = piece[0].length;
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                if (piece[i][j]) {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if (piece[row][col]) {
                     //Gets the row value of a piece where its "true" and ads it to the upperLeftPos (0,0) to get where the piece is
                     //Gets the col value of a piece where its "true" and ads it to the upperLeftPos (0,0) to get where the piece is    
-                    int rowValue = leftUpperPos.row() + i;
-                    int colValue = leftUpperPos.col() + j;                 
+                    int rowValue = leftUpperPos.row() + row;
+                    int colValue = leftUpperPos.col() + col;                 
                     itr.add(new GridCell<Character>((new CellPosition(rowValue, colValue)), c));
                 }
             }
@@ -139,14 +149,14 @@ public class Tetromino implements Iterable<GridCell<Character>>{
     }
 
     
-//hashCode method to get the hash of each piece
+//hashCode method to get the hash of each piece see existing javadoc
   @Override
     public int hashCode() {
         return Objects.hash(family, Arrays.deepHashCode(piece), leftUpperPos);
     }
 
 
-//equals method to compare the different objects to see if they are the same.
+//equals method to compare the different objects to see if they are the same see existing javadoc
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -162,9 +172,7 @@ public class Tetromino implements Iterable<GridCell<Character>>{
           }
 
         Tetromino other = (Tetromino) obj;
-        return family == other.family && 
-            Arrays.deepEquals(piece, other.piece) &&
-            Objects.equals(leftUpperPos, other.leftUpperPos);
+        return family == other.family &&  Arrays.deepEquals(piece, other.piece) && Objects.equals(leftUpperPos, other.leftUpperPos);
     }
 }
 

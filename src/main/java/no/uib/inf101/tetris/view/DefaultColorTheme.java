@@ -13,7 +13,14 @@ public class DefaultColorTheme implements ColorTheme {
             case 'b' -> Color.BLUE;
             case 'y' -> Color.YELLOW;
             case 'p' -> Color.PINK;
+            case 'T' -> Color.MAGENTA;
+            case 'J' -> Color.MAGENTA;
+            case 'S' -> Color.MAGENTA;
+            case 'Z' -> Color.MAGENTA;
+            case 'I' -> Color.MAGENTA;
+            case 'O' -> Color.MAGENTA;
             case '-' -> Color.BLACK;
+
 
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
