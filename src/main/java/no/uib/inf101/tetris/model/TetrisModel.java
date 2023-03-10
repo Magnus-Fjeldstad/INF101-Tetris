@@ -19,16 +19,25 @@ public class TetrisModel implements ViewableTetrisModel {
         tetromino = tetromino.shiftedToTopCenterOf(board);
     }
 
+    /**
+     * @return a GridDimension in this case the board
+     */
     @Override
     public GridDimension getDimension() {
         return board;
     }
 
+    /**
+     * @return a Iterable<GridCell<Character>> in this case the board
+     */
     @Override
     public Iterable<GridCell<Character>> getTilesOnBoard() {
         return board;
     }
 
+    /**
+     * @return a Iterable<GridCell<Character>> in this case tetromino
+     */
     @Override
     public Iterable<GridCell<Character>> getFallingPiece() {
         return tetromino;

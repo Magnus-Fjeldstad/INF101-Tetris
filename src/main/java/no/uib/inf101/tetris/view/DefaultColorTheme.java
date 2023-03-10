@@ -5,6 +5,10 @@ import java.awt.Color;
 
 public class DefaultColorTheme implements ColorTheme {
 
+    /**
+     * @param c takes in a Char c and returns a color
+     * @return returns a color of a cell
+     */
     @Override
     public Color getCellColor(char c) {
         Color color = switch (c){
@@ -19,6 +23,7 @@ public class DefaultColorTheme implements ColorTheme {
             case 'Z' -> Color.MAGENTA;
             case 'I' -> Color.MAGENTA;
             case 'O' -> Color.MAGENTA;
+            case 'L' -> Color.MAGENTA;
             case '-' -> Color.BLACK;
 
 
@@ -26,15 +31,20 @@ public class DefaultColorTheme implements ColorTheme {
             };
         return color;
     }
-
+    /**
+     * @return returns the color of the Frame
+     */
     @Override
     public Color getFrameColor() {
         return Color.WHITE;
     }
 
+    /**
+     * @return returns the color of the background
+     */
     @Override
     public Color getBackgroundColor(){
-        return Color.BLACK;
+        return Color.DARK_GRAY;
     }
     
 }
