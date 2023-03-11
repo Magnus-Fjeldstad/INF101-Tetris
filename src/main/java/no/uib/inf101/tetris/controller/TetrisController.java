@@ -35,11 +35,11 @@ public class TetrisController implements  java.awt.event.KeyListener {
             controller.moveTetromino(1, 0);
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            controller.moveTetromino(-1, 0);
+            controller.rotateCounterClockwise();
         }
-        // else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-        //     // Spacebar was pressed
-        // }
+        else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            controller.moveTetromino(1, 0);
+        }
         tetrisView.repaint();
         
     }

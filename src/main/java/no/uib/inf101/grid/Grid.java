@@ -12,7 +12,7 @@ public class Grid<E> implements IGrid<E> {
 
 
     // Contructor
-    public Grid(int rows, int cols,E initValue){
+    public  Grid(int rows, int cols,E initValue){
         this.rows = rows;
         this.cols = cols;
         grid = new ArrayList<ArrayList<E>>();

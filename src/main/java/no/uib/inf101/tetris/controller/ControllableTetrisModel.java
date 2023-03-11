@@ -7,5 +7,12 @@ public interface ControllableTetrisModel {
      * @param deltaCol how many rows that is moved
      * @return true if the Tetromino object is moved and false if it didnt move
      */
-    boolean moveTetromino(int deltaRow, int deltaCol);
+    public boolean moveTetromino(int deltaRow, int deltaCol);
+
+    /**
+     * 
+     * @return a roateted fallingTetromino object
+     */
+    public boolean rotateCounterClockwise();
+
 }

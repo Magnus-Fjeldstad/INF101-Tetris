@@ -174,5 +174,31 @@ public class Tetromino implements Iterable<GridCell<Character>>{
         Tetromino other = (Tetromino) obj;
         return family == other.family &&  Arrays.deepEquals(piece, other.piece) && Objects.equals(leftUpperPos, other.leftUpperPos);
     }
+
+
+    /**
+     * Rotates a Postioned Piece to one with a shape rotated within it's box.
+     * @param x decides the way of roatetion, 0 for clockwise, 1 for counter-clockwise.
+     * @return a roted copy of a tetromino object
+     */
+    
+    public Tetromino getRotatedCopy(int x){
+
+        boolean [][] oldShape = this.piece;
+
+        boolean [][] newShape = new boolean[piece.length][piece[0].length];
+
+        for (int numRow = 0; numRow < piece.length; numRow ++) {
+           for (int numCol = 0; numCol < piece[0].length; numCol ++) {
+                if (x == 0) {
+                    newShape[numRow][numCol] = oldShape[((piece.length) - 1) - numCol][numRow];
+                }
+                else {
+                    newShape[numRow][numCol] = oldShape[numCol][(piece[0].length - 1) - numRow];
+                }
+            } 
+        }
+        return new Tetromino(family, newShape, leftUpperPos);
+    }
 }
 

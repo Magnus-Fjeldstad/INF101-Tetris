@@ -9,6 +9,8 @@ public class DefaultColorTheme implements ColorTheme {
      * @param c takes in a Char c and returns a color
      * @return returns a color of a cell
      */
+
+
     @Override
     public Color getCellColor(char c) {
         Color color = switch (c){
@@ -17,6 +19,10 @@ public class DefaultColorTheme implements ColorTheme {
             case 'b' -> Color.BLUE;
             case 'y' -> Color.YELLOW;
             case 'p' -> Color.PINK;
+
+            //default color of a cell
+            case '-' -> Color.BLACK;
+            //PieceColors
             case 'T' -> Color.MAGENTA;
             case 'J' -> Color.MAGENTA;
             case 'S' -> Color.MAGENTA;
@@ -24,7 +30,7 @@ public class DefaultColorTheme implements ColorTheme {
             case 'I' -> Color.MAGENTA;
             case 'O' -> Color.MAGENTA;
             case 'L' -> Color.MAGENTA;
-            case '-' -> Color.BLACK;
+            
 
 
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
@@ -36,7 +42,7 @@ public class DefaultColorTheme implements ColorTheme {
      */
     @Override
     public Color getFrameColor() {
-        return Color.WHITE;
+        return Color.cyan;
     }
 
     /**
@@ -44,7 +50,7 @@ public class DefaultColorTheme implements ColorTheme {
      */
     @Override
     public Color getBackgroundColor(){
-        return Color.DARK_GRAY;
+        return Color.pink;
     }
     
 }

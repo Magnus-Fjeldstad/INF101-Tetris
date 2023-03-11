@@ -61,6 +61,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
         return true;
     }
+    
 
     /**
      * Makes a copy of the falling tetromino object and moves the fallingTetromino object useing the copy
@@ -74,10 +75,22 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             return true;
         }
         return false;
+        
     }
 
-    
 
-    
-    
+    /**
+     * @return checks if the rotatedCopy of a fallingTetromino object is allowed usiong the 'isLeagalPos' method.
+     * If it is leagel it return true and the piece rotate counter clockwise otherwise nothing happens to the fallingTetromino
+     */
+    @Override
+    public boolean rotateCounterClockwise() {
+        Tetromino fallingTetrominoCopy = fallingTetromino.getRotatedCopy(1);
+        if(isLeagalPos(fallingTetrominoCopy)){
+            this.fallingTetromino = fallingTetrominoCopy;
+            return true;
+        }
+        return false;
+    }
+
 }

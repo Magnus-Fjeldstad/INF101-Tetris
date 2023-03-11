@@ -6,11 +6,11 @@ public interface GridDimension {
    * 
    * @return number of rows in the frid
    */
-  int rows();
+  public int rows();
 
   /**
    * 
    * @return number of cols in the grid
    */
-  int cols();
+  public int cols();
 }
