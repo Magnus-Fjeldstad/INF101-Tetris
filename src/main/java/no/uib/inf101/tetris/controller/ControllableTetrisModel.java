@@ -1,5 +1,7 @@
 package no.uib.inf101.tetris.controller;
 
+import no.uib.inf101.tetris.model.GameState;
+
 public interface ControllableTetrisModel {
     /**
      * 
@@ -13,6 +15,18 @@ public interface ControllableTetrisModel {
      * 
      * @return a roateted fallingTetromino object
      */
-    public boolean rotateCounterClockwise();
+    public boolean rotateClockwise();
+
+    /**
+     * @return a dropped tetromino object
+     */
+    public void dropTetromino();
+    
+    /**
+     * 
+     * @return the gamestate
+     */
+
+    public GameState getGameState();
 
 }

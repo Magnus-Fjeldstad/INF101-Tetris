@@ -23,13 +23,13 @@ public class DefaultColorTheme implements ColorTheme {
             //default color of a cell
             case '-' -> Color.BLACK;
             //PieceColors
-            case 'T' -> Color.MAGENTA;
+            case 'T' -> Color.CYAN;
             case 'J' -> Color.MAGENTA;
-            case 'S' -> Color.MAGENTA;
-            case 'Z' -> Color.MAGENTA;
-            case 'I' -> Color.MAGENTA;
-            case 'O' -> Color.MAGENTA;
-            case 'L' -> Color.MAGENTA;
+            case 'S' -> Color.PINK;
+            case 'Z' -> Color.RED;
+            case 'I' -> Color.green;
+            case 'O' -> Color.BLUE;
+            case 'L' -> Color.ORANGE;
             
 
 
@@ -42,7 +42,7 @@ public class DefaultColorTheme implements ColorTheme {
      */
     @Override
     public Color getFrameColor() {
-        return Color.cyan;
+        return Color.WHITE;
     }
 
     /**
@@ -50,7 +50,15 @@ public class DefaultColorTheme implements ColorTheme {
      */
     @Override
     public Color getBackgroundColor(){
-        return Color.pink;
+        return Color.DARK_GRAY;
+    }
+
+    /**
+     * @return gameover Color
+     */
+    @Override
+    public Color getGameOverColor() {
+        return new Color(0, 0, 0, 128); 
     }
     
 }

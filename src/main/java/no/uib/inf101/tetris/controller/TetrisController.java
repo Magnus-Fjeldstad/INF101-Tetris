@@ -13,6 +13,7 @@ public class TetrisController implements  java.awt.event.KeyListener {
         this.controller = controller;
         this.tetrisView = tetrisView;
         tetrisView.addKeyListener(this);
+        tetrisView.setFocusable(true);
     }
 
     @Override
@@ -35,10 +36,10 @@ public class TetrisController implements  java.awt.event.KeyListener {
             controller.moveTetromino(1, 0);
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            controller.rotateCounterClockwise();
+            controller.rotateClockwise();
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            controller.moveTetromino(1, 0);
+            controller.dropTetromino();
         }
         tetrisView.repaint();
         

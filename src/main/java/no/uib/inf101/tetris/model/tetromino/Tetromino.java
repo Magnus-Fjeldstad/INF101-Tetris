@@ -108,11 +108,7 @@ public class Tetromino implements Iterable<GridCell<Character>>{
         
     }
 
-    /**
-     * 
-     * @param grid the playing board represented in a grid 
-     * @return a new Tetromino object moved to the center and top of the board
-     */
+    
 
      /**
       * 
@@ -182,23 +178,18 @@ public class Tetromino implements Iterable<GridCell<Character>>{
      * @return a roted copy of a tetromino object
      */
     
-    public Tetromino getRotatedCopy(int x){
+    public Tetromino getRotatedCopy(){
 
-        boolean [][] oldShape = this.piece;
+        boolean [][] oldPiece = this.piece;
 
-        boolean [][] newShape = new boolean[piece.length][piece[0].length];
+        boolean [][] newPiece = new boolean[piece.length][piece[0].length];
 
         for (int numRow = 0; numRow < piece.length; numRow ++) {
-           for (int numCol = 0; numCol < piece[0].length; numCol ++) {
-                if (x == 0) {
-                    newShape[numRow][numCol] = oldShape[((piece.length) - 1) - numCol][numRow];
-                }
-                else {
-                    newShape[numRow][numCol] = oldShape[numCol][(piece[0].length - 1) - numRow];
-                }
+           for (int numCol = 0; numCol < piece[0].length; numCol ++) {           
+                newPiece[numRow][numCol] = oldPiece[((piece.length) - 1) - numCol][numRow];                             
             } 
         }
-        return new Tetromino(family, newShape, leftUpperPos);
+        return new Tetromino(family, newPiece, leftUpperPos);
     }
 }
 

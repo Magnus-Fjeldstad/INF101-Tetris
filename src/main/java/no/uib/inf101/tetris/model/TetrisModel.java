@@ -1,5 +1,7 @@
 package no.uib.inf101.tetris.model;
 
+
+
 import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.GridDimension;
@@ -13,12 +15,18 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     TetrisBoard board;
     TetrominoFactory tetrominoFactory;
     Tetromino fallingTetromino;
+    GameState gameState;
+
 
     public TetrisModel(TetrisBoard board, TetrominoFactory tetrominoFactory){
         this.board = board;
         this.tetrominoFactory = tetrominoFactory;
         this.fallingTetromino = tetrominoFactory.getNext();
+
         fallingTetromino = fallingTetromino.shiftedToTopCenterOf(board);
+
+        this.gameState = GameState.ACTIVE_GAME;
+
     }
 
     /**
@@ -53,8 +61,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
      * in the board and if the position is not occupied by a piece.
      */
     public boolean isLeagalPos(Tetromino fallingTetromino){
-        for (GridCell<Character> cellChar : fallingTetromino) {
-            CellPosition pos = cellChar.pos();
+        for (GridCell<Character> gridCell : fallingTetromino) {
+            CellPosition pos = gridCell.pos();
             if(!(board.positionIsOnGrid(pos) && board.get(pos).equals('-'))){
                 return false;
             }
@@ -75,7 +83,6 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             return true;
         }
         return false;
-        
     }
 
 
@@ -84,8 +91,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
      * If it is leagel it return true and the piece rotate counter clockwise otherwise nothing happens to the fallingTetromino
      */
     @Override
-    public boolean rotateCounterClockwise() {
-        Tetromino fallingTetrominoCopy = fallingTetromino.getRotatedCopy(1);
+    public boolean rotateClockwise() {
+        Tetromino fallingTetrominoCopy = fallingTetromino.getRotatedCopy();
         if(isLeagalPos(fallingTetrominoCopy)){
             this.fallingTetromino = fallingTetrominoCopy;
             return true;
@@ -93,4 +100,56 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return false;
     }
 
+    
+
+    /**
+     * create a newTetromino object. Checks if its allowed to spawn
+     * and if it is this.fallingTetromino = newTetromino
+     */
+    public void newFallingTetromino() {
+        Tetromino newTetromino = tetrominoFactory.getNext();
+        newTetromino = newTetromino.shiftedToTopCenterOf(board);
+        boolean legalPos = true;
+        for (GridCell<Character> gridCell : newTetromino){
+            CellPosition pos = gridCell.pos();
+            if(!board.positionIsOnGrid(gridCell.pos()) || board.get(pos)!= '-'){
+                legalPos = false;
+            } 
+        }
+        if(legalPos){
+            this.fallingTetromino = newTetromino;  
+        } 
+        
+        if(legalPos==false){
+            this.gameState = GameState.GAME_OVER;
+        }    
+    }
+
+    public void glueTetromino(){
+        for (GridCell<Character> gridCell : fallingTetromino) {
+            board.set(gridCell.pos(), gridCell.value());
+        }
+        newFallingTetromino();
+    }
+    /**
+     * takes in the fallingTetromino and shifts it by how many rows until the isLegalPos is False 
+     * if the isLegalPos == false then the loop breaks
+     */
+    @Override
+    public void dropTetromino(){
+        while(true){
+            Tetromino fallingTetrominoCopy = fallingTetromino.shiftedBy(1, 0);
+            if (isLeagalPos(fallingTetrominoCopy) == false) {
+                break;
+            }
+            else
+                moveTetromino(1, 0);
+        }
+        glueTetromino();
+    }
+
+    @Override
+    public GameState getGameState() {
+        return this.gameState;
+    }
 }

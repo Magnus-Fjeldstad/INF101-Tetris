@@ -3,13 +3,14 @@ import javax.swing.JPanel;
 
 
 import no.uib.inf101.grid.GridCell;
-
+import no.uib.inf101.tetris.model.GameState;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
+import java.awt.Font;
 
 
 public class TetrisView extends JPanel {
@@ -38,6 +39,7 @@ public class TetrisView extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawGame(g2);
+
       }
 
     /**
@@ -54,6 +56,17 @@ public class TetrisView extends JPanel {
        
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
+        
+        //if the gameState is "GameOver" a new opaque rectangle is drawn and a strin "GAME OVER" is drawn
+        if(window.getGameState() == GameState.GAME_OVER){
+          g2.setColor(colorTheme.getGameOverColor());
+          g2.fill(rectangle);
+
+          Font gameoverFont = new Font("Comic Sans", Font.BOLD, 30);
+          g2.setColor(Color.WHITE);
+          g2.setFont(gameoverFont);
+          g2.drawString("GAME OVER!",this.getWidth()/4, this.getHeight()/2  );
+        } 
       }
 
     /**

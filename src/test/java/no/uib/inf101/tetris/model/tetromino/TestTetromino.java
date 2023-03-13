@@ -117,6 +117,30 @@ public class TestTetromino {
     assertTrue(objs.contains(new GridCell<>(new CellPosition(1,4), 'O')));
     }
 
+
+    @Test
+    public void getRotatedCopy() {
+    // Create a standard 'S' tetromino placed at (10, 100) to test
+    Tetromino tetro = Tetromino.newTetromino('S');
+    //Moved the tetro two times by 10 rows and 100 cols
+    tetro = tetro.shiftedBy(10, 100);
+    //rotates the tetromino object clockwise on its center cell
+    tetro = tetro.getRotatedCopy();
+
+    // Collect which objects are iterated through
+    List<GridCell<Character>> objs = new ArrayList<>();
+    for (GridCell<Character> gc : tetro) {
+        objs.add(gc);
+    }
+
+    //Checks if the tetromino was rotated
+    assertEquals(4, objs.size());
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(10, 100), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 100), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(12, 101), 'S')));
+    assertTrue(objs.contains(new GridCell<>(new CellPosition(11, 101), 'S')));
+    
+    }
 }
 
 
