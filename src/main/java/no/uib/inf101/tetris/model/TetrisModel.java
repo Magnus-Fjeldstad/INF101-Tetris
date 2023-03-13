@@ -128,7 +128,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         for (GridCell<Character> cellChar : fallingTetromino) {
             board.set(cellChar.pos(), cellChar.value());
         }
-        
+        board.removeFullRows();
+        newFallingTetromino();
         
     }
     /**
@@ -145,14 +146,31 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             else
                 moveTetromino(1, 0);        
         }
-        
+
         glueTetromino();
-        board.removeFullRows();
-        newFallingTetromino();
+        // board.removeFullRows();
+        // newFallingTetromino();
     }
 
+    /**
+     * Gets the gamestate
+     * @return the gamestate
+     */
     @Override
     public GameState getGameState() {
         return this.gameState;
     }
+
+    @Override
+    public int milliSeconds() {
+        return 1000;
+    }
+
+    @Override
+    public void clockTick() {
+        if (moveTetromino(1,0) == true) {
+        } 
+        else 
+           glueTetromino();        
+    }   
 }

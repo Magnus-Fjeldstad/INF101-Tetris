@@ -29,4 +29,14 @@ public interface ControllableTetrisModel {
 
     public GameState getGameState();
 
+    /**
+     * 
+     * @return everytime a tetromino should move in milliseconds
+     */
+    public int milliSeconds();
+
+    /**
+     * //TODO 
+     */
+    public void clockTick();
 }
