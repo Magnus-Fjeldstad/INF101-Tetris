@@ -109,27 +109,27 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public void newFallingTetromino() {
         Tetromino newTetromino = tetrominoFactory.getNext();
         newTetromino = newTetromino.shiftedToTopCenterOf(board);
-        boolean legalPos = true;
         for (GridCell<Character> gridCell : newTetromino){
             CellPosition pos = gridCell.pos();
             if(!board.positionIsOnGrid(gridCell.pos()) || board.get(pos)!= '-'){
-                legalPos = false;
-            } 
-        }
-        if(legalPos){
-            this.fallingTetromino = newTetromino;  
-        } 
-        
-        if(legalPos==false){
-            this.gameState = GameState.GAME_OVER;
-        }    
+                this.gameState = GameState.GAME_OVER;
+                break;
+            }
+            else
+                this.fallingTetromino = newTetromino;  
+            
+        }  
     }
 
-    public void glueTetromino(){
-        for (GridCell<Character> gridCell : fallingTetromino) {
-            board.set(gridCell.pos(), gridCell.value());
+    /**
+     * Iterates throug the fallingTetromino object and sets it in place if it is called upon
+     */
+    private void glueTetromino(){
+        for (GridCell<Character> cellChar : fallingTetromino) {
+            board.set(cellChar.pos(), cellChar.value());
         }
-        newFallingTetromino();
+        
+        
     }
     /**
      * takes in the fallingTetromino and shifts it by how many rows until the isLegalPos is False 
@@ -139,13 +139,16 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public void dropTetromino(){
         while(true){
             Tetromino fallingTetrominoCopy = fallingTetromino.shiftedBy(1, 0);
-            if (isLeagalPos(fallingTetrominoCopy) == false) {
+            if (!isLeagalPos(fallingTetrominoCopy)) {
                 break;
             }
             else
-                moveTetromino(1, 0);
+                moveTetromino(1, 0);        
         }
+        
         glueTetromino();
+        board.removeFullRows();
+        newFallingTetromino();
     }
 
     @Override

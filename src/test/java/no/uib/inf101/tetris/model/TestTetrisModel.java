@@ -51,4 +51,6 @@ public class TestTetrisModel {
         assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
     }
 
+    //TODO skriv en test som tester dropTetromino
+
 }
