@@ -111,14 +111,15 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         newTetromino = newTetromino.shiftedToTopCenterOf(board);
         for (GridCell<Character> gridCell : newTetromino){
             CellPosition pos = gridCell.pos();
-            if(!board.positionIsOnGrid(gridCell.pos()) || board.get(pos)!= '-'){
+            if(!board.positionIsOnGrid(pos) || board.get(pos)!= '-'){
                 this.gameState = GameState.GAME_OVER;
                 break;
             }
             else
                 this.fallingTetromino = newTetromino;  
             
-        }  
+        }
+
     }
 
     /**
@@ -148,8 +149,6 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
 
         glueTetromino();
-        // board.removeFullRows();
-        // newFallingTetromino();
     }
 
     /**
@@ -163,7 +162,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     @Override
     public int milliSeconds() {
-        return 1000;
+        return 800;
     }
 
     @Override
@@ -172,5 +171,21 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         } 
         else 
            glueTetromino();        
-    }   
+    }
+
+    @Override
+    public Iterable<GridCell<Character>> viewShadowTetromino(){
+        Tetromino shadowTetromino = fallingTetromino;
+        while(true){
+            Tetromino shadowTetrominoCopy  = shadowTetromino.shiftedBy(1, 0);
+            if(!isLeagalPos(shadowTetrominoCopy)){
+                break;
+            }
+
+            shadowTetromino = shadowTetrominoCopy;
+        }
+        return shadowTetromino;
+    }
+    
+    
 }

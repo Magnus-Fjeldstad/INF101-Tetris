@@ -56,15 +56,18 @@ public class TetrisView extends JPanel {
        
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
-        
+        drawShadowCells(g2, window.viewShadowTetromino(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
+
         //if the gameState is "GameOver" a new opaque rectangle is drawn and a strin "GAME OVER" is drawn
         if(window.getGameState() == GameState.GAME_OVER){
           g2.setColor(colorTheme.getGameOverColor());
           g2.fill(rectangle);
 
           Font gameoverFont = new Font("Comic Sans", Font.BOLD, 30);
+          
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
+        
           g2.drawString("GAME OVER!",this.getWidth()/4, this.getHeight()/2  );
         } 
       }
@@ -83,5 +86,17 @@ public class TetrisView extends JPanel {
             g.setColor(color);
             g.fill(rect);
         }
-    }
+      }
+
+      /**
+       * @return same as drawCells but for a shadowCell
+       */
+      public static void drawShadowCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
+        for (GridCell<Character> gridCell : cell) {     
+            Color color = CT.getShadowColor(gridCell.value());
+            Rectangle2D rect = converter.getBoundsForCell(gridCell.pos());
+            g.setColor(color);
+            g.fill(rect);
+        }
+  }  
 }

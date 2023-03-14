@@ -34,4 +34,11 @@ public interface ViewableTetrisModel{
 
     GameState getGameState();
 
+
+    /**
+     * 
+     * @return a shadow of a tetromino
+     */
+    Iterable<GridCell<Character>> viewShadowTetromino();
+
 }

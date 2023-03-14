@@ -36,7 +36,7 @@ public interface ControllableTetrisModel {
     public int milliSeconds();
 
     /**
-     * //TODO 
+     * a tick based on a preset timer in milliseconds
      */
     public void clockTick();
 }

@@ -13,15 +13,14 @@ public class DefaultColorTheme implements ColorTheme {
      */
 
     private final Color gameOverColor = new Color (0, 0, 0, 128);
-    private final Color papayWhip = new Color(255, 239, 213);
-    private final Color bloodRed = new Color(106, 4, 0);
     private final Color crazyOrange = new Color(248,178,67);
     private final Color cornflowerBlue = new Color(116, 148, 234);
     private final Color springGreen = new Color(53, 255, 105);
     private final Color steelPink = new Color(209, 56, 191);
     private final Color maueve = new Color(226, 160, 255);
     private final Color azuere = new Color (49, 133, 252);
-    private final Color celadon = new Color(184, 216, 186);
+    private final Color cyan = new Color(0, 255, 255);
+
     /**
      * @param c takes in a Char c and returns a color
      * @return  a color of a cell
@@ -30,16 +29,10 @@ public class DefaultColorTheme implements ColorTheme {
     @Override
     public Color getCellColor(char c) {
         Color color = switch (c){
-            case 'r' -> Color.RED;
-            case 'g' -> Color.GREEN;
-            case 'b' -> Color.BLUE;
-            case 'y' -> Color.YELLOW;
-            case 'p' -> Color.PINK;
-
             //default color of a cell
-            case '-' -> celadon;
+            case '-' -> Color.darkGray;
             //PieceColors
-            case 'T' -> Color.CYAN;
+            case 'T' -> cyan;
             case 'J' -> crazyOrange;
             case 'S' -> cornflowerBlue;
             case 'Z' -> springGreen;
@@ -47,12 +40,29 @@ public class DefaultColorTheme implements ColorTheme {
             case 'O' -> maueve;
             case 'L' -> azuere;
             
-
-
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
         return color;
     }
+
+    @Override
+    public Color getShadowColor(char c) {
+        Color color = switch (c){
+            //PieceColors
+            case 'T' -> new Color(0, 255, 255, 128);
+            case 'J' -> new Color(248,178,67, 128);
+            case 'S' -> new Color(116, 148, 234,128);
+            case 'Z' -> new Color(53, 255, 105 , 128);
+            case 'I' -> new Color(209, 56, 191 ,128);
+            case 'O' -> new Color(226, 160, 255 ,128);
+            case 'L' -> new Color (49, 133, 252, 128);
+            
+            default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
+            };
+        return color;
+    }
+
+
     /**
      * @return returns the color of the Frame
      */
@@ -66,7 +76,7 @@ public class DefaultColorTheme implements ColorTheme {
      */
     @Override
     public Color getBackgroundColor(){       
-        return papayWhip;
+        return Color.BLACK;
     }
 
     /**
@@ -76,5 +86,6 @@ public class DefaultColorTheme implements ColorTheme {
     public Color getGameOverColor() {
         return gameOverColor;
     }
+    
     
 }

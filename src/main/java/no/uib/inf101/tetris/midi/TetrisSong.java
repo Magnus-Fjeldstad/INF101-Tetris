@@ -13,13 +13,18 @@ import javax.sound.midi.Sequencer;
  * </code>
  */
 public class TetrisSong implements Runnable {
-    private static final String TETRISMUSIC = "tetris.midi";
+    
+    private static final String TETRISMUSIC = "song1.midi";
     private Sequencer sequencer;
+    
+    
+   
 
     @Override
     public void run() {
         InputStream song = TetrisSong.class.getClassLoader().getResourceAsStream(TETRISMUSIC);
         this.doPlayMidi(song, true);
+        
     }
 
     private void doPlayMidi(final InputStream is, final boolean loop) {

@@ -21,6 +21,7 @@ public class TetrisController implements  java.awt.event.KeyListener {
         tetrisView.addKeyListener(this);
         tetrisView.setFocusable(true);
         this.timer = new Timer(controller.milliSeconds(), this:: clockTick);
+        this.song = new TetrisSong();
         timer.start();
         song.run();
     }
@@ -34,24 +35,26 @@ public class TetrisController implements  java.awt.event.KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            controller.moveTetromino(0, -1);
+        if(controller.getGameState() == GameState.ACTIVE_GAME){
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                controller.moveTetromino(0, -1);
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                controller.moveTetromino(0, 1);
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                controller.moveTetromino(1, 0);
+                timer.restart();
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                controller.rotateClockwise();
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                controller.dropTetromino();
+            }
+            tetrisView.repaint();
         }
-        else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            controller.moveTetromino(0, 1);
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            controller.moveTetromino(1, 0);
-            timer.restart();
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            controller.rotateClockwise();
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            controller.dropTetromino();
-        }
-        tetrisView.repaint();
+       
         
     }
     public void delay(){
@@ -64,11 +67,15 @@ public class TetrisController implements  java.awt.event.KeyListener {
             controller.clockTick();
             tetrisView.repaint();
         }
+        else{
+            song.doPauseMidiSounds();
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
+
    
 }

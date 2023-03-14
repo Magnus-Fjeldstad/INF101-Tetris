@@ -12,6 +12,14 @@ public interface ColorTheme {
     Color getCellColor(char c);
 
     /**
+   * Gets the color of the cell.
+   *
+   * @param c Converts the char "c" to a color
+   * @return the color of the cell
+   */
+    Color getShadowColor(char c);
+
+    /**
    * Sets the color of the frame of the board.
    *
    * @return the color of the frame
@@ -26,6 +34,10 @@ public interface ColorTheme {
    */
     Color getBackgroundColor();
 
+    /**
+     * 
+     * @return the color that is drawn when game over
+     */
     Color getGameOverColor();
 
 }
