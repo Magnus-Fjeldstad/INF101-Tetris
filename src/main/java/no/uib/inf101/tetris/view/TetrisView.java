@@ -13,11 +13,13 @@ import java.awt.Color;
 import java.awt.Font;
 
 
+
 public class TetrisView extends JPanel {
     //feltvariabler
     ViewableTetrisModel window;
     ColorTheme colorTheme;
-    private static final double OUTERMARGIN = 30; 
+    private static final double OUTERMARGIN = 250;
+    private static final double UPPEROUTERMARGIN = 30;
     
 
 
@@ -28,7 +30,7 @@ public class TetrisView extends JPanel {
         this.setBackground(colorTheme.getBackgroundColor());
         this.window = window;
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(400, 600));
+        this.setPreferredSize(new Dimension(800, 600));
       }
 
     
@@ -49,7 +51,7 @@ public class TetrisView extends JPanel {
      * @param g2 takes in a g2 parameter that is used to draw 2D rectangles.
      */
       public void drawGame(Graphics2D g2){
-        Rectangle2D rectangle = new Rectangle2D.Double(OUTERMARGIN , OUTERMARGIN, this.getWidth() - 2 * OUTERMARGIN , this.getHeight() - 2 * OUTERMARGIN );
+        Rectangle2D rectangle = new Rectangle2D.Double(OUTERMARGIN , UPPEROUTERMARGIN, this.getWidth() - 2 * OUTERMARGIN , this.getHeight() - 2 * UPPEROUTERMARGIN );
         g2.setColor(colorTheme.getBackgroundColor());
         g2.fill(rectangle);
 
@@ -70,8 +72,15 @@ public class TetrisView extends JPanel {
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
         
-          g2.drawString("GAME OVER!",this.getWidth()/4, this.getHeight()/2  );
+          g2.drawString("GAME OVER!",this.getWidth()/3, this.getHeight()/2);
         } 
+        //Draw The Score
+        int score = window.getScore();
+        String scoreString = Integer.toString(score);
+        Font scoreFont = new Font("Arial", Font.BOLD, 20);
+        g2.setFont(scoreFont);
+        g2.setColor(Color.WHITE);
+        g2.drawString("Score:" + scoreString,this.getWidth()/6, this.getHeight()/3);
       }
 
     /**

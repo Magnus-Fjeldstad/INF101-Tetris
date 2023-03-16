@@ -4,25 +4,29 @@ import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.Grid;
 
 public class TetrisBoard extends Grid<Character> {
+    int removedRows;
 
     public TetrisBoard(int rows, int cols) {
         super(rows, cols, '-');
-
+        //this.removedRows = removedRows += removeFullRows();
     }  
     
-    //Turns cellposistions to string
+    /**
+     * 
+     * @return a string of the board
+     */
     public String prettyString() {
         String stringBoard = "";
         for (int i = 0; i < this.rows(); ++i) {  // rows er høyden
             for(int j = 0; j < this.cols(); j++){//cols er bredden                 
-                    stringBoard += this.get( new CellPosition(i,j));                                          
+                    stringBoard += this.get(new CellPosition(i,j));                                          
             }
             if (i < this.rows() -1){
                 stringBoard += ("\n");}   
         }
         return stringBoard;
     }  
-    
+
     /**
      * 
      * @param row takes in an int row
@@ -81,6 +85,31 @@ public class TetrisBoard extends Grid<Character> {
             a--;
             b--;
         }
+        removedRows += numClearedRows;
         return numClearedRows;
+    }
+
+    public int getScore(){
+        int score = 0;
+        int oldRemoved = 0;
+        if ((this.removedRows- oldRemoved)==1){
+            score += 100;
+            oldRemoved += 1;
+        }
+        if ((this.removedRows- oldRemoved)==2){
+            score += 300;
+            oldRemoved += 2;
+        }
+        if ((this.removedRows- oldRemoved)==3){
+            score += 500;
+            oldRemoved += 3;
+        }
+        if ((this.removedRows-oldRemoved) == 4){
+            score += 800;
+            oldRemoved += 4;
+        }
+        System.out.println(this.removedRows);
+        System.out.println(oldRemoved);
+        return score; 
     }
 }

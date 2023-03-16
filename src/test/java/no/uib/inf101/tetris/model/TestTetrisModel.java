@@ -53,4 +53,22 @@ public class TestTetrisModel {
 
     //TODO skriv en test som tester dropTetromino
 
+    @Test
+        public void testDropTetromino() {
+        TetrisBoard board = new TetrisBoard(20, 10);
+        TetrominoFactory factory = new PatternedTetrominoFactory("I");
+        ViewableTetrisModel model = new TetrisModel(board, factory);
+
+        List<GridCell<Character>> tetroCells = new ArrayList<>();
+        for (GridCell<Character> gc : model.getFallingPiece()) {
+            tetroCells.add(gc);
+        }
+
+        assertEquals(4, tetroCells.size());
+        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 3), 'I')));
+        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 4), 'I')));
+        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
+        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
+    }
+
 }

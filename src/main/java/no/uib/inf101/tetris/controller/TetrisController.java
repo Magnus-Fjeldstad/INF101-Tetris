@@ -20,7 +20,7 @@ public class TetrisController implements  java.awt.event.KeyListener {
         this.tetrisView = tetrisView;
         tetrisView.addKeyListener(this);
         tetrisView.setFocusable(true);
-        this.timer = new Timer(controller.milliSeconds(), this:: clockTick);
+        this.timer = new Timer(controller.getTimerDelay(), this:: clockTick);
         this.song = new TetrisSong();
         timer.start();
         song.run();
@@ -58,12 +58,12 @@ public class TetrisController implements  java.awt.event.KeyListener {
         
     }
     public void delay(){
-        timer.setDelay(controller.milliSeconds());
-        timer.setInitialDelay(2000);
+        this.timer.setInitialDelay(2000);
+        this.timer.setDelay(0);
     }
 
-    public void clockTick(ActionEvent e){
-        if(!(controller.getGameState() == GameState.GAME_OVER)){
+    private void clockTick(ActionEvent e){
+        if(controller.getGameState() == GameState.ACTIVE_GAME){
             controller.clockTick();
             tetrisView.repaint();
         }

@@ -33,7 +33,7 @@ public interface ControllableTetrisModel {
      * 
      * @return everytime a tetromino should move in milliseconds
      */
-    public int milliSeconds();
+    public int getTimerDelay();
 
     /**
      * a tick based on a preset timer in milliseconds
