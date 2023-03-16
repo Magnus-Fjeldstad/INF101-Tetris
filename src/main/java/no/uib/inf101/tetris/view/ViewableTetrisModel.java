@@ -41,4 +41,5 @@ public interface ViewableTetrisModel{
      */
     Iterable<GridCell<Character>> viewShadowTetromino();
 
+
 }

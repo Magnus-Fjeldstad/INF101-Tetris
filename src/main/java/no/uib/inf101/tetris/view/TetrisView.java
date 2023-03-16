@@ -17,7 +17,9 @@ public class TetrisView extends JPanel {
     //feltvariabler
     ViewableTetrisModel window;
     ColorTheme colorTheme;
-    private static final double OUTERMARGIN = 30;
+    private static final double OUTERMARGIN = 30; 
+    
+
 
 
     //kontruktør
@@ -64,7 +66,7 @@ public class TetrisView extends JPanel {
           g2.fill(rectangle);
 
           Font gameoverFont = new Font("Comic Sans", Font.BOLD, 30);
-          
+
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
         
@@ -98,5 +100,5 @@ public class TetrisView extends JPanel {
             g.setColor(color);
             g.fill(rect);
         }
-  }  
+      } 
 }

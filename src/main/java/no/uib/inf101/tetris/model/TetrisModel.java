@@ -18,12 +18,15 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     GameState gameState;
 
 
+
     public TetrisModel(TetrisBoard board, TetrominoFactory tetrominoFactory){
         this.board = board;
         this.tetrominoFactory = tetrominoFactory;
         this.fallingTetromino = tetrominoFactory.getNext();
 
         fallingTetromino = fallingTetromino.shiftedToTopCenterOf(board);
+
+
 
         this.gameState = GameState.ACTIVE_GAME;
 
@@ -116,7 +119,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
                 break;
             }
             else
-                this.fallingTetromino = newTetromino;  
+                
+                this.fallingTetromino = newTetromino;
             
         }
 
@@ -186,6 +190,5 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
         return shadowTetromino;
     }
-    
-    
+       
 }
