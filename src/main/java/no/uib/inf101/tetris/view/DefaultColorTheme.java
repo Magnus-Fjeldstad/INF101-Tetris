@@ -41,13 +41,13 @@ public class DefaultColorTheme implements ColorTheme {
     public Color getShadowColor(char c) {
         Color shadowColor = switch (c){
             //PieceColors
-            case 'T' -> new Color(0, 255, 255, 128);
-            case 'J' -> new Color(248,178,67, 128);
-            case 'S' -> new Color(116, 148, 234,128);
-            case 'Z' -> new Color(53, 255, 105 , 128);
-            case 'I' -> new Color(209, 56, 191 ,128);
-            case 'O' -> new Color(226, 160, 255 ,128);
-            case 'L' -> new Color (49, 133, 252, 128);
+            case 'T' -> new Color(0, 255, 255, 100);
+            case 'J' -> new Color(248,178,67, 100);
+            case 'S' -> new Color(116, 148, 234,100);
+            case 'Z' -> new Color(53, 255, 105 , 100);
+            case 'I' -> new Color(209, 56, 191 ,100);
+            case 'O' -> new Color(226, 160, 255 ,100);
+            case 'L' -> new Color (49, 133, 252, 100);
             
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
@@ -58,7 +58,7 @@ public class DefaultColorTheme implements ColorTheme {
     
     @Override
     public Color getFrameColor() {
-        return Color.WHITE;
+        return Color.black;
     }
 
    

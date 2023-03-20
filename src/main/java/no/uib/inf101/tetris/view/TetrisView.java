@@ -18,7 +18,7 @@ public class TetrisView extends JPanel {
     //feltvariabler
     ViewableTetrisModel window;
     ColorTheme colorTheme;
-    private static final double OUTERMARGIN = 250;
+    private static final double OUTERMARGIN = 200;
     private static final double UPPEROUTERMARGIN = 30;
     
 
@@ -30,7 +30,7 @@ public class TetrisView extends JPanel {
         this.setBackground(colorTheme.getBackgroundColor());
         this.window = window;
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(800, 600));
+        this.setPreferredSize(new Dimension(700, 600));
       }
 
     
@@ -57,7 +57,7 @@ public class TetrisView extends JPanel {
 
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(rectangle);
-        
+
         //Draws the cells
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
@@ -71,13 +71,14 @@ public class TetrisView extends JPanel {
         if(window.getGameState()==GameState.ACTIVE_GAME){
           g2.setFont(scoreFont);
           g2.setColor(Color.WHITE);
-          g2.drawString("SCORE: " + scoreString,this.getWidth()/7, this.getHeight()/2);
+          g2.drawString("SCORE: " + scoreString, (this.getWidth()/18), this.getHeight()/2);
         }
        
         //if the gameState is "GameOver" a new opaque rectangle is drawn and a strin "GAME OVER" is drawn
         if(window.getGameState() == GameState.GAME_OVER){
+          Rectangle2D gameOverRect = new Rectangle2D.Double(0 , 0, this.getWidth(), this.getHeight());
           g2.setColor(colorTheme.getGameOverColor());
-          g2.fill(rectangle);
+          g2.fill(gameOverRect);
 
           //Draws the gameOver text
           Font gameoverFont = new Font("Arial", Font.BOLD, 40);
