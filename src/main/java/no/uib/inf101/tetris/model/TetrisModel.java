@@ -159,22 +159,31 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return this.gameState;
     }
     
+    /**
+     * return an int that represent every millisecond the "clock" should tick
+     * the delay decreases when the score goes up.
+     * @return the ticks in milliseconds
+     */
     @Override
     public int getTimerDelay() {
         int speed = 1000;
-        if(board.getScore()> 1000){
+        if(board.getScore()>= 1000){
             speed = 800;
         }
-        if(board.getScore()> 3000){
+        if(board.getScore()>= 3000){
             speed = 600;
         }
-        if(board.getScore()> 5000){
+        if(board.getScore()>= 5000){
             speed = 400;
+        }
+        if(board.getScore()>= 10000){
+            speed = 200;
         }
         return speed;
         
     }
 
+    
     @Override
     public void clockTick() {
         if (moveTetromino(1,0) == false) {
@@ -201,6 +210,5 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     @Override
     public int getScore() {
         return board.getScore();
-    }
-       
+    }     
 }

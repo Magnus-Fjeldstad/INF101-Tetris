@@ -37,6 +37,7 @@ public interface ControllableTetrisModel {
 
     /**
      * a tick based on a preset timer in milliseconds
+     * moves the tetromino one row up each tick
      */
     public void clockTick();
 }

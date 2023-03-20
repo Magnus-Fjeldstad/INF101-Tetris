@@ -57,16 +57,19 @@ public class TetrisController implements  java.awt.event.KeyListener {
         }
     }
 
-    
-    private void delay(){
-        this.timer.setInitialDelay(2000);
-        this.timer.setDelay(0);
+    /**
+     * The delay decreases when the score goes up
+     */
+    private void setDelay(){
+        timer.setDelay(controller.getTimerDelay());
+        timer.setInitialDelay(1000);
     }
 
     private void clockTick(ActionEvent e){
         if(controller.getGameState() == GameState.ACTIVE_GAME){
             controller.clockTick();
             tetrisView.repaint();
+            setDelay();
         }
         else{
             song.doPauseMidiSounds();

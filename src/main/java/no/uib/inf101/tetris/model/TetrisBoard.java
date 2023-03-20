@@ -99,7 +99,6 @@ public class TetrisBoard extends Grid<Character> {
             }
 
         }
-        
         return numClearedRows;
     }
     /**

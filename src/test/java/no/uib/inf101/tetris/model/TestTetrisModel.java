@@ -127,4 +127,27 @@ public class TestTetrisModel {
     assertTrue(tetroCellsMoved.contains(new GridCell<>(new CellPosition(1, 5), 'O')));
 
     }
+
+    @Test
+    public void moveTetrominoOutOfBounds(){
+    TetrisBoard board = new TetrisBoard(10,10);
+    TetrominoFactory factory = new PatternedTetrominoFactory("O");
+    TetrisModel movedTettromino = new TetrisModel(board, factory);
+    
+    //Tries to move the Tetromino to a position that is outOfBounds
+    movedTettromino.moveTetromino(20,20);
+    List<GridCell<Character>> tetroCellsMoved = new ArrayList<>();
+    for (GridCell<Character> gc : movedTettromino.getFallingPiece()) {
+        tetroCellsMoved.add(gc);
+    }
+
+    //The tetromino should stay in place since the cells are out of bounds
+    //Checks if the tetromino has not moved from its strating position
+    assertEquals(4, tetroCellsMoved.size());
+    assertTrue(tetroCellsMoved.contains(new GridCell<>(new CellPosition(0, 4), 'O')));
+    assertTrue(tetroCellsMoved.contains(new GridCell<>(new CellPosition(0, 5), 'O')));
+    assertTrue(tetroCellsMoved.contains(new GridCell<>(new CellPosition(1, 4), 'O')));
+    assertTrue(tetroCellsMoved.contains(new GridCell<>(new CellPosition(1, 5), 'O')));
+
+    }
 }

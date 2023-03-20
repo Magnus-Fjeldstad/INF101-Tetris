@@ -57,7 +57,8 @@ public class TetrisView extends JPanel {
 
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(rectangle);
-       
+        
+        //Draws the cells
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawShadowCells(g2, window.viewShadowTetromino(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
@@ -73,14 +74,13 @@ public class TetrisView extends JPanel {
           g2.drawString("SCORE: " + scoreString,this.getWidth()/7, this.getHeight()/2);
         }
        
-
         //if the gameState is "GameOver" a new opaque rectangle is drawn and a strin "GAME OVER" is drawn
         if(window.getGameState() == GameState.GAME_OVER){
           g2.setColor(colorTheme.getGameOverColor());
           g2.fill(rectangle);
 
           //Draws the gameOver text
-          Font gameoverFont = new Font("Comic Sans", Font.BOLD, 40);
+          Font gameoverFont = new Font("Arial", Font.BOLD, 40);
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
           g2.drawString("GAME OVER!",(this.getWidth()/2)-(g2.getFontMetrics().stringWidth("GAME OVER!")/2), this.getHeight()/2);

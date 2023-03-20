@@ -12,14 +12,6 @@ public class DefaultColorTheme implements ColorTheme {
      * Color color = new Color(r,g,b);
      */
 
-    private final Color gameOverColor = new Color (0, 0, 0, 128);
-    private final Color crazyOrange = new Color(248,178,67);
-    private final Color cornflowerBlue = new Color(116, 148, 234);
-    private final Color springGreen = new Color(53, 255, 105);
-    private final Color steelPink = new Color(209, 56, 191);
-    private final Color maueve = new Color(226, 160, 255);
-    private final Color azuere = new Color (49, 133, 252);
-    private final Color cyan = new Color(0, 255, 255);
 
     /**
      * @param c takes in a Char c and returns a color
@@ -32,13 +24,13 @@ public class DefaultColorTheme implements ColorTheme {
             //default color of a cell
             case '-' -> Color.darkGray;
             //PieceColors
-            case 'T' -> cyan;
-            case 'J' -> crazyOrange;
-            case 'S' -> cornflowerBlue;
-            case 'Z' -> springGreen;
-            case 'I' -> steelPink;
-            case 'O' -> maueve;
-            case 'L' -> azuere;
+            case 'T' -> new Color(0, 255, 255);
+            case 'J' -> new Color(248,178,67);
+            case 'S' -> new Color(116, 148, 234);
+            case 'Z' -> new Color(53, 255, 105);
+            case 'I' -> new Color(209, 56, 191);
+            case 'O' -> new Color(226, 160, 255);
+            case 'L' -> new Color (49, 133, 252);
             
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
@@ -47,7 +39,7 @@ public class DefaultColorTheme implements ColorTheme {
 
     @Override
     public Color getShadowColor(char c) {
-        Color color = switch (c){
+        Color shadowColor = switch (c){
             //PieceColors
             case 'T' -> new Color(0, 255, 255, 128);
             case 'J' -> new Color(248,178,67, 128);
@@ -59,7 +51,7 @@ public class DefaultColorTheme implements ColorTheme {
             
             default -> throw new IllegalArgumentException("No available color for '" + c + "'");            
             };
-        return color;
+        return shadowColor;
     }
 
 
@@ -72,13 +64,13 @@ public class DefaultColorTheme implements ColorTheme {
    
     @Override
     public Color getBackgroundColor(){       
-        return Color.BLACK;
+        return Color.LIGHT_GRAY;
     }
 
    
     @Override
     public Color getGameOverColor() {
-        return gameOverColor;
+        return new Color (0, 0, 0, 128);
     }
     
     
