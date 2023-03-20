@@ -4,10 +4,12 @@ import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.Grid;
 
 public class TetrisBoard extends Grid<Character> {
-    int removedRows;
+    private int score;
 
     public TetrisBoard(int rows, int cols) {
         super(rows, cols, '-');
+        this.score = 0;
+        //this.score = 0;
         //this.removedRows = removedRows += removeFullRows();
     }  
     
@@ -64,7 +66,8 @@ public class TetrisBoard extends Grid<Character> {
     }
 
     /**
-     * 
+     * Removes rows based on an algorithm. Checks if the rows are full, if they are
+     * ones removed and a copy of the upper row is moved one step further "down".
      * @return the amount of removed rows.
      */
     public  int removeFullRows() {
@@ -85,31 +88,26 @@ public class TetrisBoard extends Grid<Character> {
             a--;
             b--;
         }
-        removedRows += numClearedRows;
+        if (numClearedRows > 0) {
+            if (numClearedRows == 1) {
+                this.score += 100;
+            } else if (numClearedRows == 2) {
+                this.score += 300;
+            } else if (numClearedRows == 3) {
+                this.score += 500;
+            } else if (numClearedRows == 4) {
+                this.score += 800;
+            }
+
+        }
+
         return numClearedRows;
     }
-
+    /**
+     * 
+     * @return the score
+     */
     public int getScore(){
-        int score = 0;
-        int oldRemoved = 0;
-        if ((this.removedRows- oldRemoved)==1){
-            score += 100;
-            oldRemoved += 1;
-        }
-        if ((this.removedRows- oldRemoved)==2){
-            score += 300;
-            oldRemoved += 2;
-        }
-        if ((this.removedRows- oldRemoved)==3){
-            score += 500;
-            oldRemoved += 3;
-        }
-        if ((this.removedRows-oldRemoved) == 4){
-            score += 800;
-            oldRemoved += 4;
-        }
-        System.out.println(this.removedRows);
-        System.out.println(oldRemoved);
-        return score; 
+        return this.score;
     }
 }

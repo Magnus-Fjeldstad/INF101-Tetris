@@ -72,8 +72,9 @@ public class TetrisView extends JPanel {
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
         
-          g2.drawString("GAME OVER!",this.getWidth()/3, this.getHeight()/2);
+          g2.drawString("GAME OVER!",(this.getWidth()/2)-(g2.getFontMetrics().stringWidth("GAME OVER")/2), this.getHeight()/2);
         } 
+
         //Draw The Score
         int score = window.getScore();
         String scoreString = Integer.toString(score);

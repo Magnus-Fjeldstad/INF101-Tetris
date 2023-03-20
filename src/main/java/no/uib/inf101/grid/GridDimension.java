@@ -4,7 +4,7 @@ public interface GridDimension {
 
   /**
    * 
-   * @return number of rows in the frid
+   * @return number of rows in the grid
    */
   public int rows();
 

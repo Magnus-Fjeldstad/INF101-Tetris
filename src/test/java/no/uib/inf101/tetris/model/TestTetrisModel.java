@@ -51,24 +51,27 @@ public class TestTetrisModel {
         assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
     }
 
-    //TODO skriv en test som tester dropTetromino
 
     @Test
-        public void testDropTetromino() {
-        TetrisBoard board = new TetrisBoard(20, 10);
-        TetrominoFactory factory = new PatternedTetrominoFactory("I");
-        ViewableTetrisModel model = new TetrisModel(board, factory);
+    public void TestdropTetormino(){
+    TetrisBoard board = new TetrisBoard(20,10);
+    TetrominoFactory factory = new PatternedTetrominoFactory("Z");
 
-        List<GridCell<Character>> tetroCells = new ArrayList<>();
-        for (GridCell<Character> gc : model.getFallingPiece()) {
-            tetroCells.add(gc);
-        }
+    TetrisModel fallingTetromino = new TetrisModel(board, factory);
 
-        assertEquals(4, tetroCells.size());
-        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 3), 'I')));
-        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 4), 'I')));
-        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
-        assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));
+
+
+    fallingTetromino.dropTetromino();
+    List<GridCell<Character>> tetroCellsDropped = new ArrayList<>();
+    for (GridCell<Character> gc : fallingTetromino.getFallingPiece()) {
+        tetroCellsDropped.add(gc);
     }
 
+    assertEquals(4, tetroCellsDropped.size());
+    assertTrue(board.get(new CellPosition(19, 4)) == 'Z');
+    assertTrue(board.get(new CellPosition(19, 5)) == 'Z');
+    assertTrue(board.get(new CellPosition(18, 4)) == 'Z');
+    assertTrue(board.get(new CellPosition(18, 4)) == 'Z');
+
+    }   
 }

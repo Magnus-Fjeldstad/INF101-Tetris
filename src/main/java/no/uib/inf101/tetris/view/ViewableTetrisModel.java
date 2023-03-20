@@ -37,10 +37,14 @@ public interface ViewableTetrisModel{
 
     /**
      * 
-     * @return a shadow of a tetromino
+     * @return a shadow of a tetromino dropped to the lowest legal position.
      */
     Iterable<GridCell<Character>> viewShadowTetromino();
 
+    /**
+     * 
+     * @return the current score
+     */
     int getScore();
 
 

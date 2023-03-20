@@ -12,11 +12,10 @@ import no.uib.inf101.tetris.view.ViewableTetrisModel;
 
 public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel {
 
-    TetrisBoard board;
-    TetrominoFactory tetrominoFactory;
-    Tetromino fallingTetromino;
-    GameState gameState;
-
+    private final  TetrisBoard board;
+    private final  TetrominoFactory tetrominoFactory;
+    private Tetromino fallingTetromino;
+    private GameState gameState;
 
 
     public TetrisModel(TetrisBoard board, TetrominoFactory tetrominoFactory){
@@ -109,7 +108,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
      * create a newTetromino object. Checks if its allowed to spawn
      * and if it is this.fallingTetromino = newTetromino
      */
-    public void newFallingTetromino() {
+    private void newFallingTetromino() {
         Tetromino newTetromino = tetrominoFactory.getNext();
         newTetromino = newTetromino.shiftedToTopCenterOf(board);
         for (GridCell<Character> gridCell : newTetromino){
@@ -155,7 +154,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public GameState getGameState() {
         return this.gameState;
     }
-
+    
     @Override
     public int getTimerDelay() {
         return 800;

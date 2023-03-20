@@ -123,6 +123,10 @@ public class Tetromino implements Iterable<GridCell<Character>>{
           
     }
 
+    /**
+     * An iterator that makes the Tetromino iterable 
+     * @return an iterator
+     */
     @Override
     public Iterator<GridCell<Character>> iterator() {
         List<GridCell<Character>> itr = new ArrayList<>();
@@ -173,11 +177,9 @@ public class Tetromino implements Iterable<GridCell<Character>>{
 
 
     /**
-     * Rotates a Postioned Piece to one with a shape rotated within it's box.
-     * @param x decides the way of roatetion, 0 for clockwise, 1 for counter-clockwise.
-     * @return a roted copy of a tetromino object
+     * 
+     * @return a rotated copy of the piece. 
      */
-    
     public Tetromino getRotatedCopy(){
 
         boolean [][] oldPiece = this.piece;

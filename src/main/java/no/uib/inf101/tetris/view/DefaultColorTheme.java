@@ -63,25 +63,19 @@ public class DefaultColorTheme implements ColorTheme {
     }
 
 
-    /**
-     * @return returns the color of the Frame
-     */
+    
     @Override
     public Color getFrameColor() {
         return Color.WHITE;
     }
 
-    /**
-     * @return returns the color of the background
-     */
+   
     @Override
     public Color getBackgroundColor(){       
         return Color.BLACK;
     }
 
-    /**
-     * @return gameover Color
-     */
+   
     @Override
     public Color getGameOverColor() {
         return gameOverColor;

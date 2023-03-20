@@ -11,8 +11,13 @@ public class Grid<E> implements IGrid<E> {
     private final ArrayList<ArrayList<E>> grid;
 
 
-    // Contructor
-    public  Grid(int rows, int cols,E initValue){
+    /**
+     * 
+     * @param rows the amount of rows in the grid
+     * @param cols the amount of cols in the grid
+     * @param initValue the initalvalue '-'
+     */
+    public Grid(int rows, int cols,E initValue){
         this.rows = rows;
         this.cols = cols;
         grid = new ArrayList<ArrayList<E>>();
@@ -28,16 +33,26 @@ public class Grid<E> implements IGrid<E> {
         }
   }
 
-  //Second Constructor
+/**
+ * 
+ * @param rows rows in the grid
+ * @param cols cols in the grid
+ */
   public Grid(int rows, int cols){
     this(rows, cols, null);
 }
-        
+    
+    /**
+     * @return the amount of rows in the grid
+     */
     @Override
     public int rows() {
         return rows;
     }
 
+    /**
+     * @return the amount of cols in the grid
+     */
     @Override
     public int cols() {
         return cols;
@@ -62,7 +77,8 @@ public class Grid<E> implements IGrid<E> {
             return listElements.iterator();
         }
     
-
+    
+   
     @Override
     public void set(CellPosition pos, E value) {
        if(!positionIsOnGrid(pos)){
@@ -76,6 +92,7 @@ public class Grid<E> implements IGrid<E> {
        }
     }
 
+    
     @Override
     public E get(CellPosition pos) {
         if(!positionIsOnGrid(pos)){

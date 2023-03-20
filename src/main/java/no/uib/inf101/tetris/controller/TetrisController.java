@@ -10,10 +10,10 @@ import javax.swing.Timer;
 
 public class TetrisController implements  java.awt.event.KeyListener {
 
-    ControllableTetrisModel controller;
-    TetrisView tetrisView;
-    Timer timer;
-    TetrisSong song;
+    private final ControllableTetrisModel controller;
+    private final TetrisView tetrisView;
+    private final Timer timer;
+    private final TetrisSong song;
 
     public TetrisController(ControllableTetrisModel controller, TetrisView tetrisView){
         this.controller = controller;
@@ -54,10 +54,10 @@ public class TetrisController implements  java.awt.event.KeyListener {
             }
             tetrisView.repaint();
         }
-       
-        
     }
-    public void delay(){
+
+    
+    private void delay(){
         this.timer.setInitialDelay(2000);
         this.timer.setDelay(0);
     }
