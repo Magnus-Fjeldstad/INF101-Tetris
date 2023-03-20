@@ -14,7 +14,7 @@ import javax.sound.midi.Sequencer;
  */
 public class TetrisSong implements Runnable {
     
-    private static final String TETRISMUSIC = "burningMemory.midi";
+    private static final String TETRISMUSIC = "undertale.mid";
     private Sequencer sequencer;
     
     

@@ -6,11 +6,10 @@ import no.uib.inf101.grid.Grid;
 public class TetrisBoard extends Grid<Character> {
     private int score;
 
+
     public TetrisBoard(int rows, int cols) {
         super(rows, cols, '-');
         this.score = 0;
-        //this.score = 0;
-        //this.removedRows = removedRows += removeFullRows();
     }  
     
     /**
@@ -100,7 +99,7 @@ public class TetrisBoard extends Grid<Character> {
             }
 
         }
-
+        
         return numClearedRows;
     }
     /**

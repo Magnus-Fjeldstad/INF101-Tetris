@@ -61,27 +61,34 @@ public class TetrisView extends JPanel {
         drawCells(g2, window.getTilesOnBoard(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawCells(g2, window.getFallingPiece(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
         drawShadowCells(g2, window.viewShadowTetromino(),new CellPositionToPixelConverter(rectangle,window.getDimension(), 3), colorTheme);
+        
+        //Variables to make the integer getScore to string
+        int score = window.getScore();
+        String scoreString = Integer.toString(score);
+        Font scoreFont = new Font("Arial", Font.BOLD, 20);
+        //Draw The Score on the side while game is active
+        if(window.getGameState()==GameState.ACTIVE_GAME){
+          g2.setFont(scoreFont);
+          g2.setColor(Color.WHITE);
+          g2.drawString("SCORE: " + scoreString,this.getWidth()/7, this.getHeight()/2);
+        }
+       
 
         //if the gameState is "GameOver" a new opaque rectangle is drawn and a strin "GAME OVER" is drawn
         if(window.getGameState() == GameState.GAME_OVER){
           g2.setColor(colorTheme.getGameOverColor());
           g2.fill(rectangle);
 
-          Font gameoverFont = new Font("Comic Sans", Font.BOLD, 30);
-
+          //Draws the gameOver text
+          Font gameoverFont = new Font("Comic Sans", Font.BOLD, 40);
           g2.setColor(Color.WHITE);
           g2.setFont(gameoverFont);
-        
-          g2.drawString("GAME OVER!",(this.getWidth()/2)-(g2.getFontMetrics().stringWidth("GAME OVER")/2), this.getHeight()/2);
-        } 
+          g2.drawString("GAME OVER!",(this.getWidth()/2)-(g2.getFontMetrics().stringWidth("GAME OVER!")/2), this.getHeight()/2);
 
-        //Draw The Score
-        int score = window.getScore();
-        String scoreString = Integer.toString(score);
-        Font scoreFont = new Font("Arial", Font.BOLD, 20);
-        g2.setFont(scoreFont);
-        g2.setColor(Color.WHITE);
-        g2.drawString("Score:" + scoreString,this.getWidth()/6, this.getHeight()/3);
+          //Draws the score when gameover
+          g2.setFont(scoreFont);
+          g2.drawString("SCORE: " + scoreString,(this.getWidth()/2)-(g2.getFontMetrics().stringWidth("SCORE: " + scoreString)/2), (int) (this.getHeight()/1.7));
+        }     
       }
 
     /**

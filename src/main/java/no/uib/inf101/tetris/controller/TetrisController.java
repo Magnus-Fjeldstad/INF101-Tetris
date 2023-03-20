@@ -45,6 +45,7 @@ public class TetrisController implements  java.awt.event.KeyListener {
             else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 controller.moveTetromino(1, 0);
                 timer.restart();
+                
             }
             else if (e.getKeyCode() == KeyEvent.VK_UP) {
                 controller.rotateClockwise();

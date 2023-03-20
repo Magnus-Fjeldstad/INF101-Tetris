@@ -116,7 +116,9 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             if(!board.positionIsOnGrid(pos) || board.get(pos)!= '-'){
                 this.gameState = GameState.GAME_OVER;
                 break;
-            }else{this.fallingTetromino = newTetromino;}        
+            }
+            else{
+                this.fallingTetromino = newTetromino;}        
         }
     }
 
@@ -141,7 +143,9 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             Tetromino fallingTetrominoCopy = fallingTetromino.shiftedBy(1, 0);
             if (!isLeagalPos(fallingTetrominoCopy)) {
                 break;
-            }else{moveTetromino(1, 0);}              
+            }
+            else{
+                moveTetromino(1, 0);}              
         }
         glueTetromino();
     }
@@ -157,7 +161,18 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     
     @Override
     public int getTimerDelay() {
-        return 800;
+        int speed = 1000;
+        if(board.getScore()> 1000){
+            speed = 800;
+        }
+        if(board.getScore()> 3000){
+            speed = 600;
+        }
+        if(board.getScore()> 5000){
+            speed = 400;
+        }
+        return speed;
+        
     }
 
     @Override
@@ -175,7 +190,9 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             Tetromino shadowTetrominoCopy  = shadowTetromino.shiftedBy(1, 0);
             if(!isLeagalPos(shadowTetrominoCopy)){
                 break;
-            }else{shadowTetromino = shadowTetrominoCopy;}
+            }
+            else{
+                shadowTetromino = shadowTetrominoCopy;}
                 
         }
         return shadowTetromino;
