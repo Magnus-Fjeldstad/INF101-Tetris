@@ -16,8 +16,8 @@ import java.awt.Font;
 
 public class TetrisView extends JPanel {
     //feltvariabler
-    ViewableTetrisModel window;
-    ColorTheme colorTheme;
+    private final ViewableTetrisModel window;
+    private final ColorTheme colorTheme;
     private static final double OUTERMARGIN = 200;
     private static final double UPPEROUTERMARGIN = 30;
     
@@ -50,7 +50,7 @@ public class TetrisView extends JPanel {
      * 
      * @param g2 takes in a g2 parameter that is used to draw 2D rectangles.
      */
-      public void drawGame(Graphics2D g2){
+      private void drawGame(Graphics2D g2){
         Rectangle2D rectangle = new Rectangle2D.Double(OUTERMARGIN , UPPEROUTERMARGIN, this.getWidth() - 2 * OUTERMARGIN , this.getHeight() - 2 * UPPEROUTERMARGIN );
         g2.setColor(colorTheme.getBackgroundColor());
         g2.fill(rectangle);
@@ -99,7 +99,7 @@ public class TetrisView extends JPanel {
      * @param converter Converts a CellPosition to a Pixel
      * @param CT Color Theme set in DefualtColorTheme
      */
-      public static void drawCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
+      private static void drawCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
         for (GridCell<Character> gridCell : cell) {     
             Color color = CT.getCellColor(gridCell.value());
             Rectangle2D rect = converter.getBoundsForCell(gridCell.pos());
@@ -111,7 +111,7 @@ public class TetrisView extends JPanel {
       /**
        * @return same as drawCells but for a shadowCell
        */
-      public static void drawShadowCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
+      private static void drawShadowCells(Graphics2D g, Iterable<GridCell<Character>> cell, CellPositionToPixelConverter converter, ColorTheme CT){
         for (GridCell<Character> gridCell : cell) {     
             Color color = CT.getShadowColor(gridCell.value());
             Rectangle2D rect = converter.getBoundsForCell(gridCell.pos());

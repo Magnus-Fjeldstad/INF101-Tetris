@@ -5,7 +5,7 @@ import java.util.Random;
 public class RandomTetrominoFactory implements TetrominoFactory{
 
     
-    Random random = new Random();
+    private final Random random = new Random();
     /**
      * @return returns a random new Tetromino object from one of the shapes.
      */
