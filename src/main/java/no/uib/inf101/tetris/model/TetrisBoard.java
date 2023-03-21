@@ -82,6 +82,8 @@ public class TetrisBoard extends Grid<Character> {
      * Removes rows based on an algorithm. Checks if the rows are full, if they are
      * ones removed and a copy of the upper row is moved one step further "down".
      * @return the amount of removed rows.
+     * added a score system that updates the fieldVarible score based on how many rows are removed 
+     * and the current level
      */
     public  int removeFullRows() {
         int numClearedRows = 0;

@@ -161,7 +161,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     
     /**
      * return an int that represent every millisecond the "clock" should tick
-     * the delay decreases when the score goes up.
+     * the delay decreases when the level goes up.
      * @return the ticks in milliseconds
      */
     @Override
