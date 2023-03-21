@@ -38,6 +38,8 @@ public interface ViewableTetrisModel{
     /**
      * 
      * @return a shadow of a tetromino dropped to the lowest legal position.
+     * The shadowTetromino is neved set to the board therefor it wont be interacted with 
+     * any other part of the game.
      */
     Iterable<GridCell<Character>> viewShadowTetromino();
 

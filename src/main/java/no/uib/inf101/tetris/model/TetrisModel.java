@@ -196,13 +196,12 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public Iterable<GridCell<Character>> viewShadowTetromino(){
         Tetromino shadowTetromino = fallingTetromino;
         while(true){
-            Tetromino shadowTetrominoCopy  = shadowTetromino.shiftedBy(1, 0);
-            if(!isLeagalPos(shadowTetrominoCopy)){
+            Tetromino shadowTetrominoCopy  = shadowTetromino.shiftedBy(1, 0); //makes a copy and
+            if(!isLeagalPos(shadowTetrominoCopy)){//checks the if the copy moved by 1 row is legal if not it breaks
                 break;
             }
             else{
-                shadowTetromino = shadowTetrominoCopy;}
-                
+                shadowTetromino = shadowTetrominoCopy;} //Sets the shadowTetromino to the shadowTetrominoCopy value             
         }
         return shadowTetromino;
     }
