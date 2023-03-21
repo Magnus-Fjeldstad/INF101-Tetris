@@ -5,13 +5,27 @@ import no.uib.inf101.grid.Grid;
 
 public class TetrisBoard extends Grid<Character> {
     private int score;
+    private int rowsRemovedTotal;
+    private int level;
 
 
     public TetrisBoard(int rows, int cols) {
         super(rows, cols, '-');
         this.score = 0;
+        this.rowsRemovedTotal = 0;
+        this.level = 1;
     }  
     
+    /**
+     * Updates the level by 1 every 10 rows removed
+     */
+    private void updateLevel(){
+        if(rowsRemovedTotal >= 10){
+            this.level ++ ;
+            this.rowsRemovedTotal -=10;
+        }
+    }
+
     /**
      * 
      * @return a string of the board
@@ -89,16 +103,18 @@ public class TetrisBoard extends Grid<Character> {
         }
         if (numClearedRows > 0) {
             if (numClearedRows == 1) {
-                this.score += 100;
+                this.score += 100*this.level;
             } else if (numClearedRows == 2) {
-                this.score += 300;
+                this.score += 300*this.level;
             } else if (numClearedRows == 3) {
-                this.score += 500;
+                this.score += 500*this.level;
             } else if (numClearedRows == 4) {
-                this.score += 800;
+                this.score += 800*this.level;
             }
 
         }
+        rowsRemovedTotal += numClearedRows;
+        updateLevel();
         return numClearedRows;
     }
     /**
@@ -107,5 +123,9 @@ public class TetrisBoard extends Grid<Character> {
      */
     public int getScore(){
         return this.score;
+    }
+
+    public int getLevel(){
+        return this.level;
     }
 }

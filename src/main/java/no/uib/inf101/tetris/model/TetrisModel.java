@@ -167,17 +167,17 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     @Override
     public int getTimerDelay() {
         int speed = 1000;
-        if(board.getScore()>= 1000){
+        if(board.getLevel()== 1){
+            speed = 1000;
+        }
+        if(board.getLevel()== 2){
             speed = 800;
         }
-        if(board.getScore()>= 3000){
+        if(board.getLevel()== 4){
             speed = 600;
         }
-        if(board.getScore()>= 5000){
+        if(board.getLevel()>= 5){
             speed = 400;
-        }
-        if(board.getScore()>= 10000){
-            speed = 200;
         }
         return speed;
         

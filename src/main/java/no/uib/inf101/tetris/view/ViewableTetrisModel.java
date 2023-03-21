@@ -46,6 +46,4 @@ public interface ViewableTetrisModel{
      * @return the current score
      */
     int getScore();
-
-
 }
